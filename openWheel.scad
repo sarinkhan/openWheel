@@ -2,12 +2,14 @@
 
 openWheelRimLipOn=1;
 openWheelRimLipThickness=1;
+openWheelRimLipLengthAdjustment=1;
 
 
 servoWheelsTyreThickness=2;
 
+trackSprocketWidthAdjustment=1;
 
-servoWheelWidth=5+openWheelRimLipThickness*2*openWheelRimLipOn;
+servoWheelWidth=5+openWheelRimLipThickness*2*openWheelRimLipOn+trackSprocketWidthAdjustment*openWheelRimLipOn;
 
 openWheelRimThickness=2.5;
 servoWheelCentralHubRadius=20/2;
@@ -22,6 +24,8 @@ servoWheelFixHolesRadius=2/2;
 openWheelsArmsCount01=6;
 
 
+
+
 openWheelRimBumps=1;
 openWheelRimBumpsRadius=openWheelRimThickness;
 openWheelRimBumpsCount=16;
@@ -30,6 +34,8 @@ openWheelRimBumpsCount=16;
 openWheelRimRidges=1;
 openWheelRimRidgesCount=openWheelRimBumpsCount;
 openWheelRimRidgesRadius=openWheelRimThickness;
+
+
 
 openWheelRimPerimeter=openWheelRimBumpsCount*2*openWheelRimBumpsRadius;
 
