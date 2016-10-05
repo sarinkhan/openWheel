@@ -360,6 +360,8 @@ ring(ringInnerRadius=wheel1HubRadius+wheel1RimBarsLength,ringThickness=2,
 
 
   }*/
+
+  //the main propulsion wheel that will move the track (or tyres)
   rIanWheelRimBumpsCount=27;
   rIanWheelRimPerimeter=rIanWheelRimBumpsCount*2*openWheelRimBumpsRadius;
 
@@ -367,9 +369,10 @@ ring(ringInnerRadius=wheel1HubRadius+wheel1RimBarsLength,ringThickness=2,
   //openWheelRimPerimeter=3.14159*servoWheelsRadius*2;
   rIanWheelRadius1=(rIanWheelRimPerimeter/3.14159)/2;
   echo (rIanWheelRadius1);
+  rIanWheelTotalRadius=rIanWheelRadius1+openWheelRimBumpsRadius;
 
 
-  rIanWrIanWheel1CentralHoleAxleHeadRadius=9/2; //8.5/2 in reality
+  rIanWrIanWheel1CentralHoleAxleHeadRadius=9.7/2; //8.5/2 in reality
   rIanWheel1CentralHoleAxleHeadThickness=4; //3.5 in reality
   defaultScrewRadius=3.1/2;
   rIanWheel1HubRadius=12;
@@ -381,11 +384,9 @@ ring(ringInnerRadius=wheel1HubRadius+wheel1RimBarsLength,ringThickness=2,
   gearing1CogsCount=20;
   gearing1Perimeter=gearing1CogsCount*2*openWheelRimBumpsRadius;
   gearing1Thickness=9.5;
-
-  //servoWheelsRadius=35-servoWheelsTyreThickness;
-  //openWheelRimPerimeter=3.14159*servoWheelsRadius*2;
-
   gearing1Radius=(gearing1Perimeter/3.14159)/2;
+  rIanGearing1Radius=gearing1Radius+openWheelRimBumpsRadius;
+
 
 
 module r_ian_wheel1()
@@ -394,7 +395,9 @@ module r_ian_wheel1()
   curveLevel=64,holesCount=4,holesRadius=defaultScrewRadius,holesDist=8,
   angleShift=180,cutDepthThickness=0,screwsHeadRadius=defaultScrewRadius*2,
   screwsHeadDepth=3,screwsCurveLevel=16,rimBarsCount=8,rimbarsAngleShift=360/16,rimbarsWidth=4,
-  wheelExternalRadius=rIanWheelRadius1,wheelRimThickness=2.5,lipsThickness=1,lipsOverHang=openWheelRimBumpsRadius/2);
+  wheelExternalRadius=rIanWheelRadius1,wheelRimThickness=2.5,lipsThickness=1,
+  lipsOverHang=openWheelRimBumpsRadius/2,axleHeadRadius=rIanWrIanWheel1CentralHoleAxleHeadRadius,
+  axleHeadHeight=rIanWheel1CentralHoleAxleHeadThickness);
 
 }
 
