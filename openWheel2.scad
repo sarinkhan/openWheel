@@ -384,7 +384,7 @@ ring(ringInnerRadius=wheel1HubRadius+wheel1RimBarsLength,ringThickness=2,
   centralHole1Radius=5.7/2;
 
   //the radius of the screw part of the wheels axles
-  centralAxleScrewRadius=3.85/2;
+  centralAxleScrewRadius=3.95/2;
   //this is the gearing that will move the wheel
   gearing1CogsCount=20;
   gearing1Perimeter=gearing1CogsCount*2*openWheelRimBumpsRadius;
@@ -439,7 +439,8 @@ gearingRotationAngle=30;
 
 //max value for printing on printrbot simple = 29
 frontBackAxleDistanceInCogs=16;
-distanceFrontBackWheelsAxles=frontBackAxleDistanceInCogs*openWheelRimBumpsRadius*2;
+frontBackAxleStretchingDistance=5;
+distanceFrontBackWheelsAxles=frontBackAxleDistanceInCogs*openWheelRimBumpsRadius*2+frontBackAxleStretchingDistance;
 
 trackLength=frontBackAxleDistanceInCogs*2+rIanWheelRimBumpsCount;
 
@@ -460,12 +461,16 @@ fixationSupportWheelSPacingDiscThickness=2;
   motor1FixScrewsDist=10;
   motor1FixScrewsCount=5;
 
-//rotate([0,-90,0])
+  fixationBlockEndScrewsXEdgeDistance=4;
+  fixationBlockEdgeDecal=10;
+
+/*
+rotate([0,-90,0])
 difference()
 {
   union()
   {
-    translate([-fixationBlockX-fixationSupportWheelSPacingDiscThickness,-10,-fixationBlockZ/2])
+    translate([-fixationBlockX-fixationSupportWheelSPacingDiscThickness,-fixationBlockEdgeDecal,-fixationBlockZ/2])
       cube([fixationBlockX,fixationBlockY,fixationBlockZ]);
 
     translate([-fixationSupportWheelSPacingDiscThickness,0,0])
@@ -477,11 +482,23 @@ difference()
         cylinder(r=fixationSupportWheelSPacingDiscRadius,h=fixationSupportWheelSPacingDiscThickness);
 
   }
+
+  translate([-fixationBlockX*2,0,0])
+    rotate([0,90,0])
+      cylinder(r=centralAxleScrewRadius,h=fixationBlockX*5);
+
 translate([-fixationBlockX*2,0,0])
   rotate([0,90,0])
     cylinder(r=centralAxleScrewRadius,h=fixationBlockX*5);
 
+
     translate([-fixationSupportWheelSPacingDiscThickness-fixationBlockX/2,motor1FixScrew1DistFromWheelAxle,-fixationBlockZ])
+        cylinder(r=centralAxleScrewRadius,h=fixationBlockX*5);
+
+    translate([-fixationSupportWheelSPacingDiscThickness-fixationBlockX/2,-fixationBlockEdgeDecal+fixationBlockEndScrewsXEdgeDistance,-fixationBlockZ])
+        cylinder(r=centralAxleScrewRadius,h=fixationBlockX*5);
+
+    translate([-fixationSupportWheelSPacingDiscThickness-fixationBlockX/2,fixationBlockY-fixationBlockEdgeDecal-fixationBlockEndScrewsXEdgeDistance,-fixationBlockZ])
         cylinder(r=centralAxleScrewRadius,h=fixationBlockX*5);
 
         for(i = [0 : 1 : motor1FixScrewsCount])
@@ -498,8 +515,8 @@ translate([-fixationBlockX*2,distanceFrontBackWheelsAxles,0])
 
 
 
-}
-
+}*/
+/*
   translate([gearing1Thickness,0,0])
   rotate([0,90,0])
     r_ian_wheel1();
@@ -519,7 +536,7 @@ translate([-fixationBlockX*2,distanceFrontBackWheelsAxles,0])
           r_ian_gearing1();
   rotate([0,90,0])
     r_ian_gearing1();
-
+*/
 module openWheelTrack(trackWidth,trackCogsCount,trackThickness,externalBumpsCount=0,externalBumpsThickness=1)
 {
 
@@ -571,6 +588,59 @@ module openWheelTrack(trackWidth,trackCogsCount,trackThickness,externalBumpsCoun
 
 }
 
+
+module openWheelTyre(tyreWidth,wheelCogsCount,tyreThickness,externalBumpsCount=0,externalBumpsThickness=1)
+{
+
+  tyreIntPerimeter=wheelCogsCount*2*openWheelRimBumpsRadius;
+  tyreIntRadius1=(tyreIntPerimeter/3.14159)/2;
+  //echo (trackIntRadius1);
+  difference()
+  {
+    cylinder(r=tyreIntRadius1+tyreThickness,h=tyreWidth,$fn=128);
+
+    translate([0,0,-1])
+    cylinder(r=tyreIntRadius1,h=tyreWidth*2,$fn=128);
+
+    rotationAngle01=360/wheelCogsCount;
+    for(i = [0 : 1 : wheelCogsCount])
+    {
+        angle01=rotationAngle01*i+rotationAngle01/2;
+        rotate([0,0,angle01])
+          translate([tyreIntRadius1,0,-1])
+            cylinder(r=openWheelRimRidgesRadius/2+0.25,h=tyreWidth+2,$fn=10);
+
+    }
+  }
+
+
+    rotationAngle01=360/wheelCogsCount;
+    for(i = [0 : 1 : wheelCogsCount])
+    {
+        angle01=rotationAngle01*i;
+        rotate([0,0,angle01])
+          translate([tyreIntRadius1,0,0])
+            cylinder(r=openWheelRimRidgesRadius/2-0.25,h=tyreWidth,$fn=10);
+
+    }
+
+
+  if(externalBumpsCount>0)
+  {
+    rotationAngle01=360/externalBumpsCount;
+    for(i = [0 : 1 : externalBumpsCount])
+    {
+        angle01=rotationAngle01*i;
+        rotate([0,0,angle01])
+          translate([tyreIntRadius1+tyreThickness,0,0])
+            cylinder(r=externalBumpsThickness/2,h=tyreWidth,$fn=6);
+
+    }
+  }
+
+}
+
+openWheelTyre(rIanWheel1InternalPathWidth,rIanWheelRimBumpsCount,2.5,externalBumpsCount=90,externalBumpsThickness=1);
 
 
   //openWheelTrack(rIanWheel1InternalPathWidth,trackLength,2.25,externalBumpsCount=150);
