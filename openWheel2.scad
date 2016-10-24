@@ -464,8 +464,8 @@ fixationSupportWheelSPacingDiscThickness=2;
   fixationBlockEndScrewsXEdgeDistance=4;
   fixationBlockEdgeDecal=10;
 
-/*
-rotate([0,-90,0])
+
+//rotate([0,-90,0])
 difference()
 {
   union()
@@ -515,8 +515,8 @@ translate([-fixationBlockX*2,distanceFrontBackWheelsAxles,0])
 
 
 
-}*/
-/*
+}
+
   translate([gearing1Thickness,0,0])
   rotate([0,90,0])
     r_ian_wheel1();
@@ -536,7 +536,7 @@ translate([-fixationBlockX*2,distanceFrontBackWheelsAxles,0])
           r_ian_gearing1();
   rotate([0,90,0])
     r_ian_gearing1();
-*/
+
 module openWheelTrack(trackWidth,trackCogsCount,trackThickness,externalBumpsCount=0,externalBumpsThickness=1)
 {
 
@@ -640,7 +640,7 @@ module openWheelTyre(tyreWidth,wheelCogsCount,tyreThickness,externalBumpsCount=0
 
 }
 
-openWheelTyre(rIanWheel1InternalPathWidth,rIanWheelRimBumpsCount,2.5,externalBumpsCount=90,externalBumpsThickness=1);
+//openWheelTyre(rIanWheel1InternalPathWidth,rIanWheelRimBumpsCount,2.5,externalBumpsCount=90,externalBumpsThickness=1);
 
 
   //openWheelTrack(rIanWheel1InternalPathWidth,trackLength,2.25,externalBumpsCount=150);
