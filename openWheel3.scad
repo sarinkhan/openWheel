@@ -388,7 +388,7 @@ ring(ringInnerRadius=wheel1HubRadius+wheel1RimBarsLength,ringThickness=2,
   //this is the gearing that will move the wheel
   gearing1CogsCount=20;
   gearing1Perimeter=gearing1CogsCount*2*openWheelRimBumpsRadius;
-  gearing1Thickness=9.5;
+  gearing1Thickness=8;
   gearing1Radius=(gearing1Perimeter/3.14159)/2;
   rIanGearing1Radius=gearing1Radius+openWheelRimBumpsRadius;
 
@@ -507,16 +507,19 @@ difference()
 {
 translate([-servoDepth1-fixationSupportWheelSPacingDiscThickness-2,gearing1ToWheel1AxleDistY-6-12-servoEarsWidth1,fixationBlockZ/2])
   servoSupport(servoBodyLength=23,servoBodyHeight=12,servoDepth=servoDepth1,servoEarsWidth=5,
-    servoScrewsRadius=2/2,shoeThickness=gearing1ToWheel1AxleDistZ-servoBodyHeight1,leftHoleDist=12,rightHoleDist=10,
+    servoScrewsRadius=2/2,shoeThickness=gearing1ToWheel1AxleDistZ-servoBodyHeight1/2-fixationBlockX/2,leftHoleDist=12,rightHoleDist=10,
     servoShaftDistX=8,servoShaftDistY=6);
     for(i = [0 : 5 : motor1FixScrewsCount])
     {
       translate([-fixationSupportWheelSPacingDiscThickness-fixationBlockX/2,motor1FixScrew1DistFromWheelAxle+motor1FixScrewsDist*i,-fixationBlockZ])
           cylinder(r=centralAxleScrewRadius,h=fixationBlockX*5);
     }
-
-
 }
+
+
+//r_ian_gearing1();
+
+
 //rotate([0,-90,0])
 difference()
 {
@@ -544,9 +547,7 @@ translate([-fixationBlockX*2,0,0])
     cylinder(r=centralAxleScrewRadius,h=fixationBlockX*5);
 
 
-    /*translate([-fixationSupportWheelSPacingDiscThickness-fixationBlockX/2,motor1FixScrew1DistFromWheelAxle,-fixationBlockZ])
-        cylinder(r=centralAxleScrewRadius,h=fixationBlockX*5);
-*/
+
     translate([-fixationSupportWheelSPacingDiscThickness-fixationBlockX/2,-fixationBlockEdgeDecal+fixationBlockEndScrewsXEdgeDistance,-fixationBlockZ])
         cylinder(r=centralAxleScrewRadius,h=fixationBlockX*5);
 
