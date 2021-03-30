@@ -12,7 +12,7 @@ trackSprocketWidthAdjustment=1;
 servoWheelWidth=5+openWheelRimLipThickness*2*openWheelRimLipOn+trackSprocketWidthAdjustment*openWheelRimLipOn;
 
 openWheelRimThickness=2.5;
-servoWheelCentralHubRadius=20/2;
+servoWheelCentralHubRadius=22.23;
 servoWheelCentralHubLip=1;
 servoWheelCentralHubHoleRadius=7/2;
 servoWheelRimBarsThickness=2;
